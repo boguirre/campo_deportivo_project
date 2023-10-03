@@ -1,0 +1,23 @@
+import './bootstrap';
+// import './booking-form';
+// import './bootstrap.min';
+// import './comment-form';
+// import './contact-form';
+// import './custom';
+// import './html5shiv';
+// import './jquery-3.5.1.min';
+// import './jquery.ajaxchimp.min';
+// import './jquery.appear';
+// import './jquery.datetimepicker.full';
+// import './jquery.easing';
+// import './jquery.flexslider';
+// import './jquery.magnific-popup.min';
+// import './jquery.scrollto';
+// import './jquery.validate.min';
+// import './jquery.magnific-popup.min';
+// import './materialize';
+// import './menu';
+// import './modernizr.custom';
+// import './owl.carousel.min';
+// import './respond.min';
+

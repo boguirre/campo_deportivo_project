@@ -1,0 +1,18 @@
+/* @import 'bootstrap.min.css';
+@import 'flaticon.css';
+@import 'flexslider.css';
+@import 'jquery.datetimepicker.min.css';
+@import 'magnific-popup.css';
+@import 'menu.css';
+@import 'owl.carousel.min.css';
+@import 'owl.theme.default.min.css';
+@import 'responsive.css';
+@import 'style.css'; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
