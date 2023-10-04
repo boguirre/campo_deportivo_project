@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('horarios', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_campo')->nullable();
-            $table->dateTime('hora_inicial');
-            $table->dateTime('hora_final');
+            $table->time('hora_inicial');
+            $table->time('hora_final');
             $table->string('estado');
             $table->foreign('id_campo')->references('id')->on('campos')->onDelete('set null');
             $table->timestamps();
