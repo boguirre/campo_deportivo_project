@@ -18,7 +18,7 @@ class CampoSeeder extends Seeder
         $campos = Campo::factory(20)->create();
         foreach ($campos as $campo) {
             ImagenesCampo::factory(4)->create([
-                'id_campo' => $campo->id
+                'campo_id' => $campo->id
             ]);
 
             Horario::factory(5)->create([

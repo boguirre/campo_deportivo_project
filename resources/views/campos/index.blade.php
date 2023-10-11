@@ -79,7 +79,9 @@
                                 {{-- @include('mensajeria.table') --}}
                                 @foreach ($campos as $campo)
                                     <tr>
-                                        <td>{{$campo->id}}</td>
+                                        <td>{{$campo->id}}
+                                            <a href="{{route('campo.edit', $campo)}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        </td>
                                         <td>{{$campo->nombre}}</td>
                                         <td>{{$campo->tipo_campo ? $campo->tipo_campo->nombre : 'Sin tipo de campo' }}</td>
                                         <td>{{$campo->capacidad}}</td>

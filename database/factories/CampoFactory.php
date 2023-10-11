@@ -20,7 +20,7 @@ class CampoFactory extends Factory
         return [
             'nombre' => $this->faker->sentence(),
             'descripcion' => $this->faker->text(),
-            'horario' => $this->faker->dateTime('now'),
+            'horario' => $this->faker->text(),
             'capacidad' => $this->faker->randomNumber(2),
             'precio' => $this->faker->randomElement([19.99, 29.99, 39.99, 49.99]),
             'estado' => $this->faker->randomElement(['1', '0']),

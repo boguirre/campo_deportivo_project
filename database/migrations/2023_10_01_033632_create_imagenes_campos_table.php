@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('imagenes_campos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_campo')->nullable();
+            $table->unsignedBigInteger('campo_id')->nullable();
             $table->text('url');
-            $table->foreign('id_campo')->references('id')->on('campos')->onDelete('set null');
+            $table->foreign('campo_id')->references('id')->on('campos')->onDelete('set null');
             $table->timestamps();
         });
     }

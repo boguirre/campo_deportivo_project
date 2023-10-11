@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('tipo_campo_id')->nullable();
             $table->string('nombre');
             $table->string('descripcion');
-            $table->dateTime('horario');
+            $table->string('horario');
             $table->integer('capacidad');
             $table->double('precio');
             $table->string('estado');
