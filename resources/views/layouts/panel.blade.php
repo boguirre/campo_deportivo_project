@@ -11,7 +11,7 @@
     <meta name="keywords"
         content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>SISME</title>
+    <title>DASHBOARD</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
         integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -19,8 +19,8 @@
 
 
 
-    <link rel="apple-touch-icon" href="/images/whatsapp-logo-tansparent-free.png">
-    <link rel="shortcut icon" type="image/x-icon" href="/images/whatsapp-logo-tansparent-free.png">
+    <link rel="apple-touch-icon" href="/images/logo-05.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/logo-05.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet">
     <!-- BEGIN: Vendor CSS-->
@@ -38,6 +38,7 @@
     <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/tables/datatable/buttons.bootstrap5.min.css">
     <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap5.min.css">
     <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 
@@ -257,6 +258,7 @@
     <script src="/app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
     <script src="/app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
     <script src="/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js" integrity="sha512-U2WE1ktpMTuRBPoCFDzomoIorbOyUv0sP8B+INA3EzNAhehbzED1rOJg6bCqPf/Tuposxb5ja/MAUnC8THSbLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
 

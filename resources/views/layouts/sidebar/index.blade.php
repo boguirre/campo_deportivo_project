@@ -39,10 +39,10 @@
                         </g>
                     </svg> --}}
 
-                    <img src="/images/whatsapp-logo-tansparent-free.png">
+                    <img src="/images/logo-05.png">
 
                 </span>
-                <h2 class="brand-text">SISME-SJL</h2>
+                <h2 class="brand-text">ADMIN-SJL</h2>
             </a></li>
         <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i
                     class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i
@@ -63,24 +63,24 @@
                 <span class="menu-title text-truncate" data-i18n="Email">Menú Principal</span></a>
         </li>
 
-        <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Mensajería & Otros</span><i
+        <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Campos & Otros</span><i
                 data-feather="more-horizontal"></i>
         </li>
         <li class="nav-item 
         {{-- {{ Request::is('mensajeria')|Request::is('mensajeria/*')  ? 'active' : '' }} --}}
         "><a class="d-flex align-items-center"
                 href="index.html"><i data-feather="mail"></i><span class="menu-title text-truncate"
-                    data-i18n="Dashboards">Mensajería</span>
+                    data-i18n="Dashboards">Mantenimiento</span>
                 {{-- <span class="badge badge-light-warning rounded-pill ms-auto me-1">2</span> --}}
             </a>
             <ul class="menu-content">
-                <li class="{{ Request::is('mensajeria') ? 'active' : '' }}"><a class="d-flex align-items-center"
-                        href=""><i data-feather="circle"></i><span
-                            class="menu-item text-truncate" data-i18n="Analytics">Whatsapp</span></a>
+                <li class="{{ Request::is('campos/*') ? 'active' : '' }}"><a class="d-flex align-items-center"
+                        href="{{route('campo.index')}}"><i data-feather="circle"></i><span
+                            class="menu-item text-truncate" data-i18n="Analytics">Campos</span></a>
                 </li>
-                <li class="{{ Request::is('mensajeria/create') ? 'active' : '' }}"><a class="d-flex align-items-center"
-                        href=""><i data-feather="circle"></i><span
-                            class="menu-item text-truncate" data-i18n="eCommerce">Individual</span></a>
+                <li class="{{ Request::is('complejos/*') ? 'active' : '' }}"><a class="d-flex align-items-center"
+                        href="{{route('centro.index')}}"><i data-feather="circle"></i><span
+                            class="menu-item text-truncate" data-i18n="eCommerce">Centro Deportivo</span></a>
                 </li>
             </ul>
         </li>

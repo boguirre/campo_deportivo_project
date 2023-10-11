@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CamposController;
+use App\Http\Controllers\CentroDeportivoController;
 use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +34,5 @@ Route::middleware([
     })->name('dashboard');
 });
 Route::resource('menu-principal', MenuController::class);
+Route::resource('campos', CamposController::class)->names('campo');
+Route::resource('complejos', CentroDeportivoController::class)->middleware('auth')->names('centro');

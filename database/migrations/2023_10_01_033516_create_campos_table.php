@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('campos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_tipo_campo')->nullable();
+            $table->unsignedBigInteger('tipo_campo_id')->nullable();
             $table->string('nombre');
             $table->string('descripcion');
             $table->dateTime('horario');
             $table->integer('capacidad');
             $table->double('precio');
             $table->string('estado');
-            $table->foreign('id_tipo_campo')->references('id')->on('tipo_campos')->onDelete('set null');
+            $table->foreign('tipo_campo_id')->references('id')->on('tipo_campos')->onDelete('set null');
             $table->timestamps();
         });
     }

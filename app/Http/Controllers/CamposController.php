@@ -2,25 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Agenda;
 use App\Models\Campo;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class CamposController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-
-
-    public function __construct() {
-        $this->middleware('auth');
-    } 
     public function index()
     {
+        $campos = Campo::paginate(10);
 
-
-        return view('menu.index' );
+        return view('campos.index', compact('campos'));
     }
 
     /**
@@ -28,7 +22,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        return view('campos.create');
     }
 
     /**
@@ -36,17 +30,13 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            
-        ]);
-
-        Campo::create($request->all());
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Campo $campo)
     {
         //
     }
@@ -54,7 +44,7 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Campo $campo)
     {
         //
     }
@@ -62,7 +52,7 @@ class MenuController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Campo $campo)
     {
         //
     }
@@ -70,7 +60,7 @@ class MenuController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Campo $campo)
     {
         //
     }

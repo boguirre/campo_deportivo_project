@@ -24,7 +24,7 @@ class CampoFactory extends Factory
             'capacidad' => $this->faker->randomNumber(2),
             'precio' => $this->faker->randomElement([19.99, 29.99, 39.99, 49.99]),
             'estado' => $this->faker->randomElement(['1', '0']),
-            'id_tipo_campo' => TipoCampo::all()->random()->id
+            'tipo_campo_id' => TipoCampo::all()->random()->id
 
         ];
     }
