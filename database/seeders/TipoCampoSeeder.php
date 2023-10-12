@@ -13,6 +13,26 @@ class TipoCampoSeeder extends Seeder
      */
     public function run(): void
     {
-        TipoCampo::factory(10)->create();
+        // TipoCampo::factory(10)->create();
+
+        TipoCampo::create([
+            'nombre' => 'Futbol',
+            'estado' => '1'
+        ]);
+
+        TipoCampo::create([
+            'nombre' => 'Basquetball',
+            'estado' => '1'
+        ]);
+
+        TipoCampo::create([
+            'nombre' => 'Voley',
+            'estado' => '1'
+        ]);
+
+        TipoCampo::create([
+            'nombre' => 'Tenis',
+            'estado' => '1'
+        ]);
     }
 }

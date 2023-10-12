@@ -77,14 +77,16 @@
                             <tbody id="result-table">
 
                                 {{-- @include('mensajeria.table') --}}
-                                @foreach ($centros as $centro)
+                                @foreach ($complejoDeportivos as $complejo)
                                     <tr>
-                                        <td>{{$centro->id}}</td>
-                                        <td>{{$centro->nombre}}</td>
-                                        <td>{{$centro->direccion}}</td>
-                                        <td>{{$centro->telefono}}</td>
-                                        <td>{{$centro->horario}}</td>
-                                        @if ($centro->estado >= 1)
+                                        <td>{{$complejo->id}}
+                                            <a href="{{route('centro.edit', $complejo)}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        </td>
+                                        <td>{{$complejo->nombre}}</td>
+                                        <td>{{$complejo->direccion}}</td>
+                                        <td>{{$complejo->telefono}}</td>
+                                        <td>{{$complejo->horario}}</td>
+                                        @if ($complejo->estado >= 1)
                                             <td><span class="badge bg-success">Activo</span></td>
                                         @else
                                             <td><span class="badge bg-danger">Inactivo</span></td>
@@ -100,8 +102,8 @@
                             <div class="col-md-6 mt-1">
 
                                 <div id="result-info" class="dataTables_info">
-                                    Mostrando {{ $centros->firstItem() }} a {{ $centros->lastItem() }} de
-                                {{ $centros->total() }} registros
+                                    Mostrando {{ $complejoDeportivos->firstItem() }} a {{ $complejoDeportivos->lastItem() }} de
+                                {{ $complejoDeportivos->total() }} registros
                                 </div>
 
 
@@ -112,42 +114,42 @@
                             <div class="col-md-6 mt-1">
                                 <div id="result-pagination" class="dataTables_paginate">
                                     <ul class="pagination justify-content-end">
-                                        <li class="page-item {{ $centros->previousPageUrl() ? '' : 'disabled' }}">
-                                        <a class="page-link" href="{{ $centros->previousPageUrl() }}">Anterior</a>
+                                        <li class="page-item {{ $complejoDeportivos->previousPageUrl() ? '' : 'disabled' }}">
+                                        <a class="page-link" href="{{ $complejoDeportivos->previousPageUrl() }}">Anterior</a>
                                     </li>
 
-                                    @if ($centros->currentPage() > 3)
+                                    @if ($complejoDeportivos->currentPage() > 3)
                                         <li class="page-item">
-                                            <a class="page-link" href="{{ $centros->url(1) }}">1</a>
+                                            <a class="page-link" href="{{ $complejoDeportivos->url(1) }}">1</a>
                                         </li>
-                                        @if ($centros->currentPage() > 4)
+                                        @if ($complejoDeportivos->currentPage() > 4)
                                             <li class="page-item disabled">
                                                 <span class="page-link">...</span>
                                             </li>
                                         @endif
                                     @endif
 
-                                    @foreach ($centros->getUrlRange(max($centros->currentPage() - 2, 1), min($centros->currentPage() + 2, $centros->lastPage())) as $page => $url)
+                                    @foreach ($complejoDeportivos->getUrlRange(max($complejoDeportivos->currentPage() - 2, 1), min($complejoDeportivos->currentPage() + 2, $complejoDeportivos->lastPage())) as $page => $url)
                                         <li
-                                            class="page-item {{ $page == $centros->currentPage() ? 'active' : '' }}">
+                                            class="page-item {{ $page == $complejoDeportivos->currentPage() ? 'active' : '' }}">
                                             <a class="page-link" href="{{ $url }}">{{ $page }}</a>
                                         </li>
                                     @endforeach
 
-                                    @if ($centros->currentPage() < $centros->lastPage() - 2)
-                                        @if ($centros->currentPage() < $centros->lastPage() - 3)
+                                    @if ($complejoDeportivos->currentPage() < $complejoDeportivos->lastPage() - 2)
+                                        @if ($complejoDeportivos->currentPage() < $complejoDeportivos->lastPage() - 3)
                                             <li class="page-item disabled">
                                                 <span class="page-link">...</span>
                                             </li>
                                         @endif
                                         <li class="page-item">
                                             <a class="page-link"
-                                                href="{{ $centros->url($centros->lastPage()) }}">{{ $centros->lastPage() }}</a>
+                                                href="{{ $complejoDeportivos->url($complejoDeportivos->lastPage()) }}">{{ $complejoDeportivos->lastPage() }}</a>
                                         </li>
                                     @endif
 
-                                    <li class="page-item {{ $centros->nextPageUrl() ? '' : 'disabled' }}">
-                                        <a class="page-link" href="{{ $centros->nextPageUrl() }}">Siguiente</a>
+                                    <li class="page-item {{ $complejoDeportivos->nextPageUrl() ? '' : 'disabled' }}">
+                                        <a class="page-link" href="{{ $complejoDeportivos->nextPageUrl() }}">Siguiente</a>
                                     </li>
                                     
                                     </ul>

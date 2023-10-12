@@ -37,3 +37,6 @@ Route::resource('menu-principal', MenuController::class);
 Route::resource('campos', CamposController::class)->names('campo');
 Route::resource('complejos', CentroDeportivoController::class)->middleware('auth')->names('centro');
 Route::post('campos/upload/images', [CamposController::class, 'uploadImages'])->middleware('auth')->name('upload-images');
+Route::post('complejos/upload/images', [CentroDeportivoController::class, 'uploadImagesComplejos'])->middleware('auth')->name('upload-images-complejos');
+
+
