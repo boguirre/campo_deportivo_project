@@ -141,6 +141,12 @@
                             </div>
                         </div>
 
+                        {{-- <div class="col-md-12 col-12 mt-2">
+                            @foreach ($complejo->imagenes_complejos as $image)
+                                <p>{{$image->url}}</p>
+                            @endforeach
+                        </div> --}}
+
 
                         {{-- {!! Form::close() !!} --}}
 

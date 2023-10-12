@@ -125,6 +125,12 @@
                             </div>
                         </div>
 
+                        <div class="col-md-12 col-12 mt-2">
+                            @foreach ($campo->imagenes_campos as $image)
+                                <img src="{{Storage::url($image->url)}}" alt="">
+                            @endforeach
+                        </div>
+
 
                         {{-- {!! Form::close() !!} --}}
 
