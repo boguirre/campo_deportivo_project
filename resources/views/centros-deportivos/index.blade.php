@@ -77,16 +77,16 @@
                             <tbody id="result-table">
 
                                 {{-- @include('mensajeria.table') --}}
-                                @foreach ($complejoDeportivos as $complejo)
+                                @foreach ($complejoDeportivos as $complejo_deportivo)
                                     <tr>
-                                        <td>{{$complejo->id}}
-                                            <a href="{{route('centro.edit', $complejo)}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <td>{{$complejo_deportivo->id}}
+                                            <a href="{{route('centro.edit', $complejo_deportivo)}}"><i class="fa-solid fa-pen-to-square"></i></a>
                                         </td>
-                                        <td>{{$complejo->nombre}}</td>
-                                        <td>{{$complejo->direccion}}</td>
-                                        <td>{{$complejo->telefono}}</td>
-                                        <td>{{$complejo->horario}}</td>
-                                        @if ($complejo->estado >= 1)
+                                        <td>{{$complejo_deportivo->nombre}}</td>
+                                        <td>{{$complejo_deportivo->direccion}}</td>
+                                        <td>{{$complejo_deportivo->telefono}}</td>
+                                        <td>{{$complejo_deportivo->horario}}</td>
+                                        @if ($complejo_deportivo->estado >= 1)
                                             <td><span class="badge bg-success">Activo</span></td>
                                         @else
                                             <td><span class="badge bg-danger">Inactivo</span></td>

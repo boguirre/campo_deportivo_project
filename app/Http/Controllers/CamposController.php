@@ -99,7 +99,7 @@ class CamposController extends Controller
 
         if ($uploadedImage) {
             $imageName = time() . '_' . $uploadedImage->getClientOriginalName();
-            $uploadedImage->storeAs('images', $imageName); // Almacenar en la carpeta 'images' dentro de la carpeta de almacenamiento
+            $uploadedImage->storeAs('public/images', $imageName); // Almacenar en la carpeta 'images' dentro de la carpeta de almacenamiento
 
             // Crear una nueva entrada en la base de datos
             $image = new ImagenesCampo();

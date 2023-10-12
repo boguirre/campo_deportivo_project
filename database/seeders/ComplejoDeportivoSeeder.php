@@ -18,7 +18,7 @@ class ComplejoDeportivoSeeder extends Seeder
 
         foreach ($complejos as $complejo) {
             ImagenesComplejo::factory(3)->create([
-                'complejo_id' => $complejo->id
+                'complejo_deportivo_id' => $complejo->id
             ]);
         }
     }

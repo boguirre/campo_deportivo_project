@@ -39,17 +39,17 @@ class CentroDeportivoController extends Controller
             'direccion' => 'required'
         ]);
 
-        $complejo = ComplejoDeportivo::create($request->all() + [
+        $complejo_deportivo = ComplejoDeportivo::create($request->all() + [
             'estado' => '0'
         ]);
 
-        return redirect()->route('centro.edit', $complejo);
+        return redirect()->route('centro.edit', $complejo_deportivo);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(ComplejoDeportivo $complejo)
+    public function show(ComplejoDeportivo $complejo_deportivo)
     {
         //
     }
@@ -57,15 +57,15 @@ class CentroDeportivoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ComplejoDeportivo $complejo)
+    public function edit(ComplejoDeportivo $complejo_deportivo)
     {
-        return view('centros-deportivos.edit', compact('complejo'));
+        return view('centros-deportivos.edit', compact('complejo_deportivo'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ComplejoDeportivo $complejo)
+    public function update(Request $request, ComplejoDeportivo $complejo_deportivo)
     {
         $request->validate([
             'nombre' => 'required',
@@ -75,16 +75,16 @@ class CentroDeportivoController extends Controller
             'direccion' => 'required'
         ]);
 
-        $complejo->update($request->all());
+        $complejo_deportivo->update($request->all());
 
-        return redirect()->route('centro.edit', $complejo);
+        return redirect()->route('centro.edit', $complejo_deportivo);
 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ComplejoDeportivo $complejo)
+    public function destroy(ComplejoDeportivo $complejo_deportivo)
     {
         //
     }
@@ -95,7 +95,7 @@ class CentroDeportivoController extends Controller
 
         if ($uploadedImage) {
             $imageName = time() . '_' . $uploadedImage->getClientOriginalName();
-            $uploadedImage->storeAs('complejosDeportivos', $imageName); // Almacenar en la carpeta 'images' dentro de la carpeta de almacenamiento
+            $uploadedImage->storeAs('public/complejosDeportivos', $imageName); // Almacenar en la carpeta 'images' dentro de la carpeta de almacenamiento
 
             // Crear una nueva entrada en la base de datos
             $image = new ImagenesComplejo();
@@ -104,9 +104,9 @@ class CentroDeportivoController extends Controller
             $image->complejo_id = $request['complejo_id'];
             $image->save();
 
-            $complejo = ComplejoDeportivo::find($request['complejo_id']);
-            $complejo->estado = '1';
-            $complejo->save();
+            $complejo_deportivo = ComplejoDeportivo::find($request['complejo_id']);
+            $complejo_deportivo->estado = '1';
+            $complejo_deportivo->save();
         }
 
         // return response()->json(['success' => 'Image uploaded successfully']);

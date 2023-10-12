@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('imagenes_complejos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('complejo_id')->nullable();
+            $table->unsignedBigInteger('complejo_deportivo_id')->nullable();
             $table->text('url');
-            $table->foreign('complejo_id')->references('id')->on('complejo_deportivos')->onDelete('set null');
+            $table->foreign('complejo_deportivo_id')->references('id')->on('complejo_deportivos')->onDelete('set null');
             $table->timestamps();
         });
     }

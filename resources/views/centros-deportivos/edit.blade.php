@@ -21,7 +21,7 @@
 
 
                         {{-- {!! Form::open(['route' => 'campo.store', 'autocomplete' => 'off']) !!} --}}
-                        {!! Form::model($complejo, ['route' => ['centro.update', $complejo], 'method' => 'put', 'files' => true]) !!}
+                        {!! Form::model($complejo_deportivo, ['route' => ['centro.update', $complejo_deportivo], 'method' => 'put', 'files' => true]) !!}
 
                         <div data-repeater-list="invoice">
                             <div data-repeater-item>
@@ -132,7 +132,7 @@
                                     <form action="{{ route('upload-images-complejos') }}" method="POST" class="dropzone"
                                         id="dropzoneForm">
                                         @csrf
-                                        <input type="hidden" name="complejo_id" value="{{ $complejo->id }}">
+                                        <input type="hidden" name="complejo_id" value="{{ $complejo_deportivo->id }}">
                                         <button type="submit" class="btn btn-icon btn-primary"
                                             style="position: absolute; top: 0.5rem; right: 2.5rem;"><i
                                                 class="fas fa-upload"></i></button>
@@ -141,11 +141,11 @@
                             </div>
                         </div>
 
-                        {{-- <div class="col-md-12 col-12 mt-2">
-                            @foreach ($complejo->imagenes_complejos as $image)
+                        <div class="col-md-12 col-12 mt-2">
+                            @foreach ($complejo_deportivo->imagenes_complejos as $image)
                                 <p>{{$image->url}}</p>
                             @endforeach
-                        </div> --}}
+                        </div>
 
 
                         {{-- {!! Form::close() !!} --}}
