@@ -149,7 +149,7 @@
                                 <label class="form-label" style="font-weight: 700;" for="phone_number">Campos Deportivos
                                     Agregados:</label>
                                 @foreach ($complejo_deportivo->complejo_campos as $item)
-                                    <span class="badge bg-warning text-dark mt-1"
+                                    <span class="badge bg-warning text-dark mb-1"
                                         style="margin-left: 1rem;">{{ $item->campo->nombre }}</span>
                                 @endforeach
                             </div>

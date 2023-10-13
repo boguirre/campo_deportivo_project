@@ -19,9 +19,13 @@
                             <div class="alert alert-success" role="alert">
                                 <div class="alert-body"><strong>Este Campo!</strong> Se encuentra habilitado.</div>
                             </div>
+                        @elseif($campo->estado == '2')
+                            <div class="alert alert-warning" role="alert">
+                                <div class="alert-body"><strong>Este Campo!</strong> Se encuentra en uso.</div>
+                            </div>
                         @else
                             <div class="alert alert-danger" role="alert">
-                                <div class="alert-body"><strong>Este Campo!</strong> Se encuentra inhabilitado.</div>
+                                <div class="alert-body"><strong>Este Campo!</strong> Se encuentra en inhabilitado.</div>
                             </div>
                         @endif
 

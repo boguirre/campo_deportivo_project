@@ -39,11 +39,11 @@
 
 
 
-                                <a href="{{route('campo.create')}}" class="dt-button create-new btn btn-primary" 
-                                    ><span><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" class="feather feather-plus me-50 font-small-4">
+                                <a href="{{ route('campo.create') }}" class="dt-button create-new btn btn-primary"><span><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-plus me-50 font-small-4">
                                             <line x1="12" y1="5" x2="12" y2="19">
                                             </line>
                                             <line x1="5" y1="12" x2="19" y2="12">
@@ -79,17 +79,20 @@
                                 {{-- @include('mensajeria.table') --}}
                                 @foreach ($campos as $campo)
                                     <tr>
-                                        <td>{{$campo->id}}
-                                            <a href="{{route('campo.edit', $campo)}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <td>{{ $campo->id }}
+                                            <a href="{{ route('campo.edit', $campo) }}"><i
+                                                    class="fa-solid fa-pen-to-square"></i></a>
                                         </td>
-                                        <td>{{$campo->nombre}}</td>
-                                        <td>{{$campo->tipo_campo ? $campo->tipo_campo->nombre : 'Sin tipo de campo' }}</td>
-                                        <td>{{$campo->capacidad}}</td>
-                                        <td>S/.{{$campo->precio}}</td>
-                                        @if ($campo->estado >= 1)
+                                        <td>{{ $campo->nombre }}</td>
+                                        <td>{{ $campo->tipo_campo ? $campo->tipo_campo->nombre : 'Sin tipo de campo' }}</td>
+                                        <td>{{ $campo->capacidad }}</td>
+                                        <td>S/.{{ $campo->precio }}</td>
+                                        @if ($campo->estado == 1)
                                             <td><span class="badge bg-success">Activo</span></td>
+                                        @elseif($campo->estado == 2)
+                                            <td><span class="badge bg-warning">En uso</span></td>
                                         @else
-                                            <td><span class="badge bg-danger">Inactivo</span></td>
+                                            <td><span class="badge bg-danger">Inhabilitado</span></td>
                                         @endif
                                     </tr>
                                 @endforeach
@@ -117,7 +120,7 @@
                                         <li class="page-item {{ $campos->previousPageUrl() ? '' : 'disabled' }}">
                                             <a class="page-link" href="{{ $campos->previousPageUrl() }}">Anterior</a>
                                         </li>
-                                        
+
                                         @if ($campos->currentPage() > 3)
                                             <li class="page-item">
                                                 <a class="page-link" href="{{ $campos->url(1) }}">1</a>
@@ -130,8 +133,7 @@
                                         @endif
 
                                         @foreach ($campos->getUrlRange(max($campos->currentPage() - 2, 1), min($campos->currentPage() + 2, $campos->lastPage())) as $page => $url)
-                                            <li
-                                                class="page-item {{ $page == $campos->currentPage() ? 'active' : '' }}">
+                                            <li class="page-item {{ $page == $campos->currentPage() ? 'active' : '' }}">
                                                 <a class="page-link" href="{{ $url }}">{{ $page }}</a>
                                             </li>
                                         @endforeach
@@ -151,7 +153,7 @@
                                         <li class="page-item {{ $campos->nextPageUrl() ? '' : 'disabled' }}">
                                             <a class="page-link" href="{{ $campos->nextPageUrl() }}">Siguiente</a>
                                         </li>
-                                        
+
                                     </ul>
                                 </div>
                             </div>
