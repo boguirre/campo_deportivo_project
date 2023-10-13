@@ -17,17 +17,23 @@
 
                         @if ($complejo_deportivo->estado == '1')
                             <div class="alert alert-success" role="alert">
-                                <div class="alert-body"><strong>Este Complejo Deportivo!</strong> Se encuentra habilitado.</div>
+                                <div class="alert-body"><strong>Este Complejo Deportivo!</strong> Se encuentra habilitado.
+                                </div>
                             </div>
                         @else
                             <div class="alert alert-danger" role="alert">
-                                <div class="alert-body"><strong>Este Complejo Deportivo!</strong> Se encuentra inhabilitado.</div>
+                                <div class="alert-body"><strong>Este Complejo Deportivo!</strong> Se encuentra inhabilitado.
+                                </div>
                             </div>
                         @endif
 
 
                         {{-- {!! Form::open(['route' => 'campo.store', 'autocomplete' => 'off']) !!} --}}
-                        {!! Form::model($complejo_deportivo, ['route' => ['centro.update', $complejo_deportivo], 'method' => 'put', 'files' => true]) !!}
+                        {!! Form::model($complejo_deportivo, [
+                            'route' => ['centro.update', $complejo_deportivo],
+                            'method' => 'put',
+                            'files' => true,
+                        ]) !!}
 
                         <div data-repeater-list="invoice">
                             <div data-repeater-item>
@@ -123,8 +129,37 @@
                         {!! Form::close() !!}
 
                         <div class="col-md-12 col-12 mt-2">
+                            <h4 class="card-title">Seleccionar Campos</h4>
+                            <form action="{{route('complejo.addcampo')}}" method="post">
+                                @csrf
+                                <select class="select2" name="mi_select[]">
+                                    @foreach ($campos as $campo)
+                                        <option value="{{ $campo->id }}">{{ $campo->nombre }} -
+                                            {{ $campo->tipo_campo->nombre }}</option>
+                                    @endforeach
+                                </select>
+                                <input type="hidden" name="complejo_id" value="{{$complejo_deportivo->id}}">
+                                <button class="btn btn-icon btn-primary mt-1" type="submit">
+                                    <i data-feather="plus" class="me-25"></i>
+                                    <span>Agregar Campos</span>
+                                </button>
+                            </form>
+
+                            <div class="d-flex flex-wrap mt-3">
+                                <label class="form-label" style="font-weight: 700;" for="phone_number">Campos Deportivos
+                                    Agregados:</label>
+                                @foreach ($complejo_deportivo->complejo_campos as $item)
+                                    <span class="badge bg-warning text-dark mt-1"
+                                        style="margin-left: 1rem;">{{ $item->campo->nombre }}</span>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="col-md-12 col-12 mt-2">
                             <div class="mb-1">
-                                <label class="form-label" for="phone_number">Subir Imagenes</label>
+                                <h4 class="card-title">Subir Imagenes</h4>
                                 {{-- <div class="container">
                                     <form action="{{ route('upload-images') }}" method="POST" class="dropzone"
                                         id="dropzoneForm">
@@ -152,10 +187,13 @@
                                 <div class="d-flex flex-wrap">
                                     @foreach ($complejo_deportivo->imagenes_complejos as $imagen)
                                         <div class="ml-4">
-                                            <img src="{{ Storage::url($imagen->url) }}" width="100px" height="100px" alt="">
-                                            <form action="{{ route('image-complejo.destroy') }}" method="post" class="mt-0.5">
+                                            <img src="{{ Storage::url($imagen->url) }}" width="100px" height="100px"
+                                                alt="">
+                                            <form action="{{ route('image-complejo.destroy') }}" method="post"
+                                                class="mt-0.5">
                                                 @csrf
-                                                <input type="hidden" name="complejo_id" value="{{ $complejo_deportivo->id }}">
+                                                <input type="hidden" name="complejo_id"
+                                                    value="{{ $complejo_deportivo->id }}">
                                                 <input type="hidden" name="image_id" value="{{ $imagen->id }}">
                                                 <button type="submit" style="background-color: #ff0000; border: none;">
                                                     <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
@@ -185,5 +223,13 @@
             acceptedFiles: ".jpg, .jpeg, .png", // Tipos de archivo permitidos
             dictDefaultMessage: "Arrastra archivos aquí o haz clic para seleccionar archivos"
         };
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: 'Selecciona opciones',
+                multiple: true, // Permite la selección múltiple
+            });
+        });
     </script>
 @endsection

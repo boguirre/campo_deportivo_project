@@ -41,4 +41,5 @@ Route::post('complejo_deportivos/upload/images', [CentroDeportivoController::cla
 Route::post('campos/image-destroy', [CamposController::class, 'deleteImages'])->middleware('auth')->name('image-campo.destroy');
 Route::post('complejo_deportivos/image-destroy', [CentroDeportivoController::class, 'deleteImagesComplejos'])->middleware('auth')->name('image-complejo.destroy');
 
+Route::post('complejo_deportivos/add-campos', [CentroDeportivoController::class, 'addCampos'])->middleware('auth')->name('complejo.addcampo');
 

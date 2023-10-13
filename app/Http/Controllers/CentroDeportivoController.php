@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campo;
+use App\Models\ComplejoCampo;
 use App\Models\ComplejoDeportivo;
 use App\Models\ImagenesComplejo;
 use Illuminate\Http\Request;
@@ -59,7 +61,8 @@ class CentroDeportivoController extends Controller
      */
     public function edit(ComplejoDeportivo $complejo_deportivo)
     {
-        return view('centros-deportivos.edit', compact('complejo_deportivo'));
+        $campos = Campo::where('estado', '1')->get();
+        return view('centros-deportivos.edit', compact('complejo_deportivo', 'campos'));
     }
 
     /**
@@ -78,7 +81,6 @@ class CentroDeportivoController extends Controller
         $complejo_deportivo->update($request->all());
 
         return redirect()->route('centro.edit', $complejo_deportivo);
-
     }
 
     /**
@@ -105,7 +107,7 @@ class CentroDeportivoController extends Controller
             $image->complejo_deportivo_id = $request['complejo_id'];
             $image->save();
 
-            
+
             $complejo_deportivo->estado = '1';
             $complejo_deportivo->save();
         }
@@ -120,6 +122,28 @@ class CentroDeportivoController extends Controller
         $complejo_deportivo = ComplejoDeportivo::find($request['complejo_id']);
 
         $imagen->delete();
+
+        return redirect()->route('centro.edit', $complejo_deportivo);
+    }
+
+    public function addCampos(Request $request)
+    {
+        $selectedCampos = $request->input('mi_select', []);// Obtén las opciones seleccionadas como un array
+        $complejo_deportivo = ComplejoDeportivo::find($request['complejo_id']);
+
+        // Itera sobre las opciones seleccionadas y guárdalas en la base de datos
+        foreach ($selectedCampos as $campoId) {
+            // Guarda la opción en tu modelo Campo
+            $complejoCampo = new ComplejoCampo();
+            $complejoCampo->campo_id = $campoId;
+            $complejoCampo->complejo_deportivo_id = $complejo_deportivo->id;
+            $complejoCampo->estado = '1';
+            $complejoCampo->save();
+
+            $campo = Campo::find($campoId);
+            $campo->estado = '2';
+            $campo->save();
+        }
 
         return redirect()->route('centro.edit', $complejo_deportivo);
     }
