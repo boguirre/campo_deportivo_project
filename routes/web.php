@@ -37,6 +37,8 @@ Route::resource('menu-principal', MenuController::class);
 Route::resource('campos', CamposController::class)->names('campo');
 Route::resource('complejo_deportivos', CentroDeportivoController::class)->middleware('auth')->names('centro');
 Route::post('campos/upload/images', [CamposController::class, 'uploadImages'])->middleware('auth')->name('upload-images');
-Route::post('complejo_deportivos/upload/images', [CentroDeportivoController::class, 'uploadImagesComplejos'])->middleware('auth')->name('upload-images-complejos');
+Route::post('complejo_deportivos/upload/images', [CentroDeportivoController::class, 'uploadImagesComplejos'])->middleware('auth')->name('upload-images-complejo');
+Route::post('campos/image-destroy', [CamposController::class, 'deleteImages'])->middleware('auth')->name('image-campo.destroy');
+Route::post('complejo_deportivos/image-destroy', [CentroDeportivoController::class, 'deleteImagesComplejos'])->middleware('auth')->name('image-complejo.destroy');
 
 

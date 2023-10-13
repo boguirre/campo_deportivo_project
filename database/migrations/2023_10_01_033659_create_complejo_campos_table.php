@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('complejo_campos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_complejo')->nullable();
-            $table->unsignedBigInteger('id_campo')->nullable();
+            $table->unsignedBigInteger('complejo_deportivo_id')->nullable();
+            $table->unsignedBigInteger('campo_id')->nullable();
             $table->string('estado');
-            $table->foreign('id_complejo')->references('id')->on('complejo_deportivos')->onDelete('set null');
-            $table->foreign('id_campo')->references('id')->on('campos')->onDelete('set null');
+            $table->foreign('complejo_deportivo_id')->references('id')->on('complejo_deportivos')->onDelete('set null');
+            $table->foreign('campo_id')->references('id')->on('campos')->onDelete('set null');
             $table->timestamps();
         });
     }

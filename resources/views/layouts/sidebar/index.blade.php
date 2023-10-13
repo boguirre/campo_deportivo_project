@@ -74,11 +74,11 @@
                 {{-- <span class="badge badge-light-warning rounded-pill ms-auto me-1">2</span> --}}
             </a>
             <ul class="menu-content">
-                <li class="{{ Request::is('campos/*') ? 'active' : '' }}"><a class="d-flex align-items-center"
+                <li class="{{ request()->routeIs('campo.*') ? 'active' : '' }}"><a class="d-flex align-items-center"
                         href="{{route('campo.index')}}"><i data-feather="circle"></i><span
                             class="menu-item text-truncate" data-i18n="Analytics">Campos</span></a>
                 </li>
-                <li class="{{ Request::is('complejos/*') ? 'active' : '' }}"><a class="d-flex align-items-center"
+                <li class="{{ request()->routeIs('centro.*') ? 'active' : '' }}"><a class="d-flex align-items-center"
                         href="{{route('centro.index')}}"><i data-feather="circle"></i><span
                             class="menu-item text-truncate" data-i18n="eCommerce">Centro Deportivo</span></a>
                 </li>

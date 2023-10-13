@@ -19,8 +19,8 @@ class ComplejoCampoFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_complejo' => ComplejoDeportivo::all()->random()->id,
-            'id_campo' => Campo::all()->random()->id,
+            'complejo_deportivo_id' => ComplejoDeportivo::all()->random()->id,
+            'campo_id' => Campo::all()->random()->id,
             'estado' => $this->faker->randomElement(['1'])
         ];
     }

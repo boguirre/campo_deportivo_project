@@ -96,6 +96,7 @@ class CamposController extends Controller
     public function uploadImages(Request $request)
     {
         $uploadedImage = $request->file('file'); // 'file' es el nombre del campo de entrada en el formulario
+        $campo = Campo::find($request['campo_id']);
 
         if ($uploadedImage) {
             $imageName = time() . '_' . $uploadedImage->getClientOriginalName();
@@ -108,12 +109,22 @@ class CamposController extends Controller
             $image->campo_id = $request['campo_id'];
             $image->save();
 
-            $campo = Campo::find($request['campo_id']);
             $campo->estado = '1';
             $campo->save();
         }
 
         // return response()->json(['success' => 'Image uploaded successfully']);
-        return redirect()->route('campo.index');
+        return redirect()->route('campo.edit', $campo);
+    }
+
+    public function deleteImages(Request $request)
+    {
+
+        $imagen = ImagenesCampo::find($request['image_id']);
+        $campo = Campo::find($request['campo_id']);
+
+        $imagen->delete();
+
+        return redirect()->route('campo.edit', $campo);
     }
 }

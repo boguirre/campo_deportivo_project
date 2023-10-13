@@ -91,7 +91,8 @@ class CentroDeportivoController extends Controller
 
     public function uploadImagesComplejos(Request $request)
     {
-        $uploadedImage = $request->file('file'); // 'file' es el nombre del campo de entrada en el formulario
+        $uploadedImage = $request->file('file');
+        $complejo_deportivo = ComplejoDeportivo::find($request['complejo_id']);
 
         if ($uploadedImage) {
             $imageName = time() . '_' . $uploadedImage->getClientOriginalName();
@@ -101,15 +102,25 @@ class CentroDeportivoController extends Controller
             $image = new ImagenesComplejo();
             $image->url = 'complejosDeportivos/' . $imageName; // Ruta de la imagen almacenada
             // $image->campo_id = $request->input('campo_id');
-            $image->complejo_id = $request['complejo_id'];
+            $image->complejo_deportivo_id = $request['complejo_id'];
             $image->save();
 
-            $complejo_deportivo = ComplejoDeportivo::find($request['complejo_id']);
+            
             $complejo_deportivo->estado = '1';
             $complejo_deportivo->save();
         }
 
         // return response()->json(['success' => 'Image uploaded successfully']);
-        return redirect()->route('centro.index');
+        return redirect()->route('centro.edit', $complejo_deportivo);
+    }
+
+    public function deleteImagesComplejos(Request $request)
+    {
+        $imagen = ImagenesComplejo::find($request['image_id']);
+        $complejo_deportivo = ComplejoDeportivo::find($request['complejo_id']);
+
+        $imagen->delete();
+
+        return redirect()->route('centro.edit', $complejo_deportivo);
     }
 }

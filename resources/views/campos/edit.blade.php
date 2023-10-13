@@ -15,9 +15,15 @@
 
 
 
-                        <div class="alert alert-success" role="alert">
-                            <div class="alert-body"><strong>Bienvenido!</strong> Crea los primeros campos.</div>
-                        </div>
+                        @if ($campo->estado == '1')
+                            <div class="alert alert-success" role="alert">
+                                <div class="alert-body"><strong>Este Campo!</strong> Se encuentra habilitado.</div>
+                            </div>
+                        @else
+                            <div class="alert alert-danger" role="alert">
+                                <div class="alert-body"><strong>Este Campo!</strong> Se encuentra inhabilitado.</div>
+                            </div>
+                        @endif
 
 
                         {{-- {!! Form::open(['route' => 'campo.store', 'autocomplete' => 'off']) !!} --}}
@@ -31,15 +37,25 @@
                                     <div class="col-md-4 col-12">
                                         <div class="mb-1">
                                             <label class="form-label" for="phone_number">Nombre</label>
-                                                {!! Form::text('nombre', null, ['class' => 'form-control phoneinput' , 'placeholder' => 'Ingrese el nombre del campo', 'required']) !!}
+                                            {!! Form::text('nombre', null, [
+                                                'class' => 'form-control phoneinput',
+                                                'placeholder' => 'Ingrese el nombre del campo',
+                                                'required',
+                                            ]) !!}
                                         </div>
                                     </div>
 
                                     <div class="col-md-4 col-12">
 
                                         <div class="form-floating mb-1">
-                                            
-                                            {!! Form::textarea('descripcion', null, ['class' => 'form-control char-textarea active', 'rows' => '3', 'placeholder' => 'Ingrese Descripcion', ' style' => 'height: 20px; color: rgb(78, 81, 84);', 'required']) !!}
+
+                                            {!! Form::textarea('descripcion', null, [
+                                                'class' => 'form-control char-textarea active',
+                                                'rows' => '3',
+                                                'placeholder' => 'Ingrese Descripcion',
+                                                ' style' => 'height: 20px; color: rgb(78, 81, 84);',
+                                                'required',
+                                            ]) !!}
                                             <label for="textarea-counter">Descripcion</label>
                                         </div>
                                         {{-- @error('message')
@@ -53,7 +69,11 @@
                                             {{-- <input type="number" class="form-control phoneinput" id="phone_number"
                                                 name="capacidad" aria-describedby="phone_number"
                                                 placeholder="Ingrese la capacidad" required /> --}}
-                                                {!! Form::number('capacidad', null, ['class' => 'form-control phoneinput', 'placeholder' => 'Ingrese la capacidad', 'required']) !!}
+                                            {!! Form::number('capacidad', null, [
+                                                'class' => 'form-control phoneinput',
+                                                'placeholder' => 'Ingrese la capacidad',
+                                                'required',
+                                            ]) !!}
                                         </div>
                                     </div>
 
@@ -70,7 +90,11 @@
                                             {{-- <input type="text" class="form-control phoneinput" id="phone_number"
                                                 name="horario" aria-describedby="phone_number"
                                                 placeholder="Ingrese el horario" required /> --}}
-                                                {!! Form::text('horario', null, ['class' => 'form-control phoneinput', 'placeholder' => 'Ingrese el horario', 'required']) !!}
+                                            {!! Form::text('horario', null, [
+                                                'class' => 'form-control phoneinput',
+                                                'placeholder' => 'Ingrese el horario',
+                                                'required',
+                                            ]) !!}
                                         </div>
                                     </div>
 
@@ -80,7 +104,12 @@
                                             {{-- <input type="number" step="any" class="form-control phoneinput"
                                                 id="phone_number" name="precio" aria-describedby="phone_number"
                                                 placeholder="Ingrese el precio" required /> --}}
-                                                {!! Form::number('precio', null, ['class' => 'form-control phoneinput', 'placeholder' => 'Ingrese el precio', 'required', 'step' => 'any']) !!}
+                                            {!! Form::number('precio', null, [
+                                                'class' => 'form-control phoneinput',
+                                                'placeholder' => 'Ingrese el precio',
+                                                'required',
+                                                'step' => 'any',
+                                            ]) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -116,7 +145,7 @@
                                     <form action="{{ route('upload-images') }}" method="POST" class="dropzone"
                                         id="dropzoneForm">
                                         @csrf
-                                        <input type="hidden" name="campo_id" value="{{$campo->id}}">
+                                        <input type="hidden" name="campo_id" value="{{ $campo->id }}">
                                         <button type="submit" class="btn btn-icon btn-primary"
                                             style="position: absolute; top: 0.5rem; right: 2.5rem;"><i
                                                 class="fas fa-upload"></i></button>
@@ -125,11 +154,30 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 col-12 mt-2">
-                            @foreach ($campo->imagenes_campos as $image)
-                                <img src="{{Storage::url($image->url)}}" alt="">
-                            @endforeach
+                        <div class="row d-flex align-items-end">
+                            <div class="col-md-12 col-12 mt-2">
+                                <div class="d-flex flex-wrap">
+                                    @foreach ($campo->imagenes_campos as $imagen)
+                                        <div class="ml-4">
+                                            <img src="{{ Storage::url($imagen->url) }}" width="100px" height="100px"
+                                                alt="">
+                                            <form action="{{ route('image-campo.destroy') }}" method="post" class="mt-0.5">
+                                                @csrf
+                                                <input type="hidden" name="campo_id" value="{{ $campo->id }}">
+                                                <input type="hidden" name="image_id" value="{{ $imagen->id }}">
+                                                <button type="submit" style="background-color: #ff0000; border: none;">
+                                                    <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
+
+
+
+
 
 
                         {{-- {!! Form::close() !!} --}}

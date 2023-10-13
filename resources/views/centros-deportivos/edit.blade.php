@@ -15,9 +15,15 @@
 
 
 
-                        <div class="alert alert-success" role="alert">
-                            <div class="alert-body"><strong>Bienvenido!</strong> Crea los primeros centros.</div>
-                        </div>
+                        @if ($complejo_deportivo->estado == '1')
+                            <div class="alert alert-success" role="alert">
+                                <div class="alert-body"><strong>Este Complejo Deportivo!</strong> Se encuentra habilitado.</div>
+                            </div>
+                        @else
+                            <div class="alert alert-danger" role="alert">
+                                <div class="alert-body"><strong>Este Complejo Deportivo!</strong> Se encuentra inhabilitado.</div>
+                            </div>
+                        @endif
 
 
                         {{-- {!! Form::open(['route' => 'campo.store', 'autocomplete' => 'off']) !!} --}}
@@ -129,7 +135,7 @@
                                     </form>
                                 </div> --}}
                                 <div class="container" style="position: relative;">
-                                    <form action="{{ route('upload-images-complejos') }}" method="POST" class="dropzone"
+                                    <form action="{{ route('upload-images-complejo') }}" method="POST" class="dropzone"
                                         id="dropzoneForm">
                                         @csrf
                                         <input type="hidden" name="complejo_id" value="{{ $complejo_deportivo->id }}">
@@ -141,10 +147,24 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 col-12 mt-2">
-                            @foreach ($complejo_deportivo->imagenes_complejos as $image)
-                                <p>{{$image->url}}</p>
-                            @endforeach
+                        <div class="row d-flex align-items-end">
+                            <div class="col-md-12 col-12 mt-2">
+                                <div class="d-flex flex-wrap">
+                                    @foreach ($complejo_deportivo->imagenes_complejos as $imagen)
+                                        <div class="ml-4">
+                                            <img src="{{ Storage::url($imagen->url) }}" width="100px" height="100px" alt="">
+                                            <form action="{{ route('image-complejo.destroy') }}" method="post" class="mt-0.5">
+                                                @csrf
+                                                <input type="hidden" name="complejo_id" value="{{ $complejo_deportivo->id }}">
+                                                <input type="hidden" name="image_id" value="{{ $imagen->id }}">
+                                                <button type="submit" style="background-color: #ff0000; border: none;">
+                                                    <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
 
 
