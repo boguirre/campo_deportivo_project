@@ -92,7 +92,7 @@
                                         @elseif($campo->estado == 2)
                                             <td><span class="badge bg-warning">En uso</span></td>
                                         @else
-                                            <td><span class="badge bg-danger">Inhabilitado</span></td>
+                                            <td><span class="badge bg-danger">Inhabilitado</span> </td>
                                         @endif
                                     </tr>
                                 @endforeach

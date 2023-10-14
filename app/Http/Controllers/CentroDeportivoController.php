@@ -147,4 +147,19 @@ class CentroDeportivoController extends Controller
 
         return redirect()->route('centro.edit', $complejo_deportivo);
     }
+
+    public function deleteCampos($item)
+    {
+        $complejos_campo = ComplejoCampo::find($item);
+        $complejo_deportivo = ComplejoDeportivo::find($complejos_campo->complejo_deportivo_id);
+        $campo = Campo::find($complejos_campo->campo_id);
+
+        if ($complejos_campo) {
+            $complejos_campo->delete();
+            $campo->estado = '1';
+            $campo->save();
+        }
+
+        return redirect()->route('centro.edit', $complejo_deportivo);
+    }
 }

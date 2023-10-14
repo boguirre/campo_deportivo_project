@@ -130,7 +130,7 @@
 
                         <div class="col-md-12 col-12 mt-2">
                             <h4 class="card-title">Seleccionar Campos</h4>
-                            <form action="{{route('complejo.addcampo')}}" method="post">
+                            <form action="{{ route('complejo.addcampo') }}" method="post">
                                 @csrf
                                 <select class="select2" name="mi_select[]">
                                     @foreach ($campos as $campo)
@@ -138,7 +138,7 @@
                                             {{ $campo->tipo_campo->nombre }}</option>
                                     @endforeach
                                 </select>
-                                <input type="hidden" name="complejo_id" value="{{$complejo_deportivo->id}}">
+                                <input type="hidden" name="complejo_id" value="{{ $complejo_deportivo->id }}">
                                 <button class="btn btn-icon btn-primary mt-1" type="submit">
                                     <i data-feather="plus" class="me-25"></i>
                                     <span>Agregar Campos</span>
@@ -150,7 +150,8 @@
                                     Agregados:</label>
                                 @foreach ($complejo_deportivo->complejo_campos as $item)
                                     <span class="badge bg-warning text-dark mb-1"
-                                        style="margin-left: 1rem;">{{ $item->campo->nombre }}</span>
+                                        style="margin-left: 1rem;">{{ $item->campo->nombre }} <a href="{{route('delete.campos', $item->id)}}">
+                                            <i class="fa-solid fa-circle-minus" style="color: #f50025;"></i></a></span>
                                 @endforeach
                             </div>
                         </div>
@@ -186,7 +187,7 @@
                             <div class="col-md-12 col-12 mt-2">
                                 <div class="d-flex flex-wrap">
                                     @foreach ($complejo_deportivo->imagenes_complejos as $imagen)
-                                        <div class="ml-4">
+                                        <div class="ml-4" style="margin-left: 1rem;">
                                             <img src="{{ Storage::url($imagen->url) }}" width="100px" height="100px"
                                                 alt="">
                                             <form action="{{ route('image-complejo.destroy') }}" method="post"

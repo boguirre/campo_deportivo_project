@@ -43,3 +43,5 @@ Route::post('complejo_deportivos/image-destroy', [CentroDeportivoController::cla
 
 Route::post('complejo_deportivos/add-campos', [CentroDeportivoController::class, 'addCampos'])->middleware('auth')->name('complejo.addcampo');
 
+Route::get('complejo_deportivos/delete-campos/{item}', [CentroDeportivoController::class, 'deleteCampos'])->middleware('auth')->name('delete.campos');
+
