@@ -22,7 +22,7 @@ class CampoSeeder extends Seeder
             ]);
 
             Horario::factory(5)->create([
-                'id_campo' => $campo->id
+                'campo_id' => $campo->id
             ]);
         }
     }

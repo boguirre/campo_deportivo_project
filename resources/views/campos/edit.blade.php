@@ -133,6 +133,40 @@
 
                         {!! Form::close() !!}
 
+                        <hr>
+
+                        <div class="col-md-12 col-12 mt-2">
+                            <h4 class="card-title">Registrar Horarios</h4>
+                            <form method="POST" action="{{ route('campo.add.horario') }}">
+                                @csrf
+
+                                <label for="hora_inicial">Hora Inicial:</label>
+                                <input type="time" id="hora_inicial" name="hora_inicial" required>
+
+                                <label for="hora_final">Hora Final:</label>
+                                <input type="time" id="hora_final" name="hora_final" required>
+
+                                <input type="hidden" name="campo_id" value="{{ $campo->id }}">
+
+                                <button type="submit">Agregar</button>
+                            </form>
+
+                            <div class="mb-1 mt-1">
+                                <label class="form-label" for="phone_number">Lista de horas agregadas:</label>
+                            </div>
+
+                            <form>
+                                <label><input type="checkbox" id="seleccionar-todos">Seleccionar Todos</label>
+                                <br>
+
+                                @foreach ($campo->horarios as $horario)
+                                    <label style="margin-right: 10px"><input type="checkbox" name="opcion1"
+                                            value="{{ $horario->id }}">{{ date('H:i', strtotime($horario->hora_inicial)) }}
+                                        - {{ date('H:i', strtotime($horario->hora_final)) }}</label>
+                                @endforeach
+                            </form>
+                        </div>
+
                         <div class="col-md-12 col-12 mt-2">
                             <div class="mb-1">
                                 <label class="form-label" for="phone_number">Subir Imagenes</label>
@@ -201,5 +235,13 @@
             acceptedFiles: ".jpg, .jpeg, .png", // Tipos de archivo permitidos
             dictDefaultMessage: "Arrastra archivos aquí o haz clic para seleccionar archivos"
         };
+    </script>
+    <script>
+        document.getElementById('seleccionar-todos').addEventListener('change', function() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = this.checked;
+            }
+        });
     </script>
 @endsection

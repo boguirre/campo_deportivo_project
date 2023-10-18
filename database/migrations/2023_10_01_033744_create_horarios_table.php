@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('horarios', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_campo')->nullable();
+            $table->unsignedBigInteger('campo_id')->nullable();
             $table->time('hora_inicial');
             $table->time('hora_final');
             $table->string('estado');
-            $table->foreign('id_campo')->references('id')->on('campos')->onDelete('set null');
+            $table->foreign('campo_id')->references('id')->on('campos')->onDelete('set null');
             $table->timestamps();
         });
     }

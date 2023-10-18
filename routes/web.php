@@ -45,3 +45,5 @@ Route::post('complejo_deportivos/add-campos', [CentroDeportivoController::class,
 
 Route::get('complejo_deportivos/delete-campos/{item}', [CentroDeportivoController::class, 'deleteCampos'])->middleware('auth')->name('delete.campos');
 
+Route::post('campos/addHorario', [CamposController::class, 'addHorario'])->middleware('auth')->name('campo.add.horario');
+

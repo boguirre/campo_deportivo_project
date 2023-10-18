@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campo;
+use App\Models\Horario;
 use App\Models\ImagenesCampo;
 use App\Models\TipoCampo;
 use Illuminate\Http\Request;
@@ -124,6 +125,22 @@ class CamposController extends Controller
         $campo = Campo::find($request['campo_id']);
 
         $imagen->delete();
+
+        return redirect()->route('campo.edit', $campo);
+    }
+
+    public function addHorario(Request $request)
+    {
+        $request->validate([
+            'hora_inicial' => 'required',
+            'hora_final' => 'required'
+        ]);
+        
+        $horario = Horario::create($request->all() + [
+            'estado' => '1'
+        ]);
+
+        $campo = Campo::find($request['campo_id']);
 
         return redirect()->route('campo.edit', $campo);
     }
